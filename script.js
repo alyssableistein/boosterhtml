@@ -4,16 +4,17 @@ let parameters = {
     numbers : false,
     special : false
 }
+
 let strengthBar = document.getElementById("strength-bar");
 let msg = document.getElementById("msg");
 
 function strengthChecker(){
-    let password = document.getElementById("password").value;
+    let userPassword = document.getElementById("userPassword").value;
 
-    parameters.letters = (/[A-Za-z]+/.test(password))?true:false;
-    parameters.numbers = (/[0-9]+/.test(password))?true:false;
-    parameters.special = (/[!\"$%&/()=?@~`\\.\';:+=^*_-]+/.test(password))?true:false;
-    parameters.count = (password.length > 7)?true:false;
+    parameters.letters = (/[A-Za-z]+/.test(userPassword))?true:false;
+    parameters.numbers = (/[0-9]+/.test(userPassword))?true:false;
+    parameters.special = (/[!\"$%&/()=?@~`\\.\';:+=^*_-]+/.test(userPassword))?true:false;
+    parameters.count = (userPassword.length > 7)?true:false;
 
     let barLength = Object.values(parameters).filter(value=>value);
 
@@ -30,19 +31,15 @@ function strengthChecker(){
     for( let i = 0; i < spanRef.length; i++){
         switch(spanRef.length - 1){
             case 0 :
-                spanRef[i].style.background = "#ff3e36";
-                msg.textContent = "Your password is very weak";
-                break;
-            case 1:
-                spanRef[i].style.background = "#ff691f";
+                spanRef[i].style.background = "#ffa590";
                 msg.textContent = "Your password is weak";
                 break;
             case 2:
-                spanRef[i].style.background = "#ffda36";
-                msg.textContent = "Your password is good";
+                spanRef[i].style.background = "#FFFFE0";
+                msg.textContent = "Your password is simple";
                 break;
             case 3:
-                spanRef[i].style.background = "#0be881";
+                spanRef[i].style.background = "#74B72E";
                 msg.textContent = "Your password is strong";
                 break;
         }
@@ -51,15 +48,15 @@ function strengthChecker(){
 
 
 function toggle(){
-    let password = document.getElementById("password");
+    let userPassword = document.getElementById("userPassword");
     let eye = document.getElementById("toggle");
 
-    if(password.getAttribute("type") == "password"){
+    if(userPassword.getAttribute("type") == "userPassword"){
         password.setAttribute("type","text");
         eye.style.color = "#0be881";
     }
     else{
-        password.setAttribute("type","password");
+        userPassword.setAttribute("type","userPassword");
         eye.style.color = "#808080";
     }
 }
